@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id(); // Unique ID (Primary Key)
             $table->string('username')->unique(); // Unique Username
             $table->string('password'); // Required Password
-            $table->enum('role', ['admin'])->default('admin'); // Required Role (admin only for now)
+            $table->enum('role', ['admin', 'user'])->default('user'); // Role can be 'admin' or 'user', default is 'user'
             $table->timestamps(); // Created at and Updated at
         });
     }
