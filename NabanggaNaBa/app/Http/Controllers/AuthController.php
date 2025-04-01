@@ -57,6 +57,6 @@ class AuthController extends Controller
     public function destroy()
     {
         Auth::logout();
-        return redirect()->route('auth.index')->with('success', 'Logged out successfully!');
+        return redirect()->route('login')->with('success', 'Logged out successfully!');
     }
 }

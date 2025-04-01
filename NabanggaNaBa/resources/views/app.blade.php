@@ -19,7 +19,7 @@
           <button type="submit" class="text-red-500 hover:text-red-600 cursor-pointer">Logout</button>
         </form>
       @else
-        <a href="{{ route('auth.index') }}" class="text-blue-500 hover:text-blue-600 cursor-pointer">Login</a>
+        <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-600 cursor-pointer">Login</a>
       @endif
     </div>
   </nav>
@@ -36,7 +36,7 @@
       <!-- Blur Overlay -->
       <div class="absolute inset-0 bg-opacity-30 backdrop-blur-md flex flex-col items-center justify-center text-center">
         <h1 class="text-white text-4xl md:text-6xl font-bold mb-4">Want a Peace of Mind in Buying a 2nd Hand Car?</h1>
-        <a href="/view" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg text-lg">View</a>
+        <a href="/dashboard" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg text-lg">View</a>
       </div>
     </section>
   @endif

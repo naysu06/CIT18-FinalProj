@@ -48,7 +48,7 @@
     <!-- Login Link with TailwindCSS -->
     <p class="text-center mt-4 text-gray-600">
       Already have an account? 
-      <a href="{{ route('auth.index') }}" class="text-blue-500 hover:text-blue-600 font-semibold">Login here</a>.
+      <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-600 font-semibold">Login here</a>.
     </p>
   </div>
 </body>
