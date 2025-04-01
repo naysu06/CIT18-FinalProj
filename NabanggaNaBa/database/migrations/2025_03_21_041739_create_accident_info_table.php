@@ -12,13 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('vehicles', function (Blueprint $table) {
-            $table->id(); // Unique ID
-            $table->string('plate_number')->unique(); // Required Plate Number, Unique
-            $table->string('model_year'); // Required Model/Year
-            $table->string('image'); // Required Image Path or URL
-            $table->date('date')->nullable(); // Optional Date
-            $table->string('place')->nullable(); // Optional Place
-            $table->timestamps(); // Created At and Updated At
+            $table->id();
+            $table->string('plate_number')->unique();
+            $table->string('model_year');
+            $table->string('image');
+            $table->date('date')->nullable();
+            $table->string('place')->nullable();
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending'); // Post Status
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Associate with user
+            $table->timestamps();
         });
     }
 
