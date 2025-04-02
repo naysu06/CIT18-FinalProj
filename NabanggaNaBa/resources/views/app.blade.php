@@ -41,6 +41,7 @@
                 @if ($post->status === 'approved')
                     <div class="bg-gray-100 p-4 rounded-lg shadow-md">
                         <img src="{{ asset($post->image) }}" alt="Vehicle Image" class="w-full h-64 object-cover rounded-md mb-3">
+                        <p><strong>{{ $post->user->username }}</strong></p>
                         <h2 class="text-xl font-semibold">{{ $post->plate_number }} - {{ $post->model_year }}</h2>
                         <p class="text-gray-600">Location: {{ $post->place }} | Date: {{ $post->date }}</p>
                     </div>
@@ -51,7 +52,7 @@
     </section>
     
     <!-- Floating Add Post Button -->
-    <button onclick="toggleModal()" class="fixed bottom-8 right-8 bg-blue-500 text-white p-4 rounded-full shadow-lg text-2xl">+</button>
+    <button onclick="toggleModal()" class="fixed bottom-8 right-8 bg-blue-500 text-white p-4 rounded-full shadow-lg text-2xl cursor-pointer">+</button>
 
     <!-- Add Post Modal -->
     <div id="postModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center hidden">
@@ -80,8 +81,8 @@
             <input type="text" name="place" class="w-full border p-2 rounded">
           </div>
           <div class="flex justify-between">
-            <button type="button" onclick="toggleModal()" class="bg-gray-500 text-white px-4 py-2 rounded">Cancel</button>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>
+            <button type="button" onclick="toggleModal()" class="bg-gray-500 text-white px-4 py-2 rounded cursor-pointer">Cancel</button>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer">Submit</button>
           </div>
         </form>
       </div>
