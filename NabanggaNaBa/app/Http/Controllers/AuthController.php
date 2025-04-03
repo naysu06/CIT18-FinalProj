@@ -34,7 +34,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('auth.index')->with('success', 'Registration successful! Please login.');
+        return redirect()->route('login')->with('success', 'Registration successful! Please login.');
     }
 
     // Handle login
@@ -57,6 +57,6 @@ class AuthController extends Controller
     public function destroy()
     {
         Auth::logout();
-        return redirect()->route('auth.index')->with('success', 'Logged out successfully!');
+        return redirect()->route('login')->with('success', 'Logged out successfully!');
     }
 }
