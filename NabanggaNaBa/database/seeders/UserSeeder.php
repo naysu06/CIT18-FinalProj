@@ -19,6 +19,12 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),  // Uncomment if you want to hash the password
             'role' => 'user',  // Add 'role' here if required
         ]);
+        // Create a test user with the correct fields
+        User::factory()->create([
+            'username' => 'testadmin',  // Use 'username' instead of 'name'
+            'password' => Hash::make('password'),  // Uncomment if you want to hash the password
+            'role' => 'admin',  // Add 'role' here if required
+        ]);
         // Create 20 random users
         User::factory()->count(20)->create();
     }

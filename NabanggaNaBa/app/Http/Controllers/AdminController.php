@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Post;
 
 class AdminController extends Controller
 {
-    public function login (Request $request){
-        $incommingFields = $request->validate([
-            'role' => 'required',
-            'username' => 'required',
-            'Password' => 'required'
-        ]);
+    public function dashboard()
+    {
+        $totalUsers = User::count();
+        $totalPosts = Post::count();
+        $approvedPosts = Post::where('status', 'approved')->count();
+        $pendingPosts = Post::where('status', 'pending')->get();
+
+        return view('admin.dashboard', compact('totalUsers', 'totalPosts', 'approvedPosts', 'pendingPosts'));
     }
 }

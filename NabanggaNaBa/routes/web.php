@@ -5,6 +5,13 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Middleware\AdminMiddleware;
+
+Route::middleware(['auth', AdminMiddleware::class])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+});
 
 // Main Feed Page (Accessible by Everyone)
 Route::get('/app', [PostController::class, 'index'])->name('app');
@@ -22,6 +29,7 @@ Route::resource('auth', AuthController::class)->only(['create', 'store', 'index'
         'index' => 'login',
     ]);
 Route::post('/auth/login', [AuthController::class, 'login'])->name('auth.login');
+Route::delete('/logout', [AuthController::class, 'destroy'])->name('logout');
 Route::get('/register', [AuthController::class, 'create'])->name('register');
 
 // Protected Dashboard
@@ -38,5 +46,5 @@ Route::get('/', function () {
 Route::get('/AdminLogin', function () {
     return view('AdminLogin');
 });
-Route::resource('admin', AdminController::class);
+
 Route::resource('main', MainController::class);

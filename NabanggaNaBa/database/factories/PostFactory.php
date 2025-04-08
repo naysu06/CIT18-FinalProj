@@ -18,7 +18,7 @@ class PostFactory extends Factory
             'image' => 'posts/sample.jpg', // Placeholder image
             'date' => $this->faker->date(),
             'place' => $this->faker->city(),
-            'status' => 'approved', // Directly approved for testing
+            'status' => 'pending', // Directly approved for testing, change to pending for real use
             'user_id' => User::factory(), // Generates a random user
         ];
     }

@@ -17,11 +17,11 @@
     <div class="container mx-auto flex justify-between items-center">
       <a href="#" class="text-2xl font-bold text-gray-800">NabanggaNaBa</a>
       @if(auth()->check())
-        <form action="{{ route('auth.destroy', auth()->user()->id) }}" method="POST">
-          @csrf
-          @method('DELETE')
-          <button type="submit" class="text-red-500 hover:text-red-600 cursor-pointer">Logout</button>
-        </form>
+      <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        @method('DELETE')
+        <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Logout</button>
+      </form>
       @else
         <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-600 cursor-pointer">Login</a>
       @endif
