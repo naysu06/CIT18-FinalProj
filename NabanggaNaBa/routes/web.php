@@ -8,9 +8,30 @@ use App\Http\Controllers\PostController;
 use App\Http\Middleware\AdminMiddleware;
 
 Route::middleware(['auth', AdminMiddleware::class])->group(function () {
+    // Admin Dashboard route
     Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
+        return view('admin.dashboard', [
+            'pendingVehicles' => \App\Models\Post::where('status', 'pending')->get()
+        ]);
     })->name('admin.dashboard');
+
+    // Route for approving a vehicle post
+    Route::post('/admin/approve/{id}', function ($id) {
+        $vehicle = \App\Models\Post::findOrFail($id);
+        $vehicle->status = 'approved';
+        $vehicle->save();
+
+        return redirect()->route('admin.dashboard')->with('success', 'Vehicle post approved!');
+    })->name('admin.approve');
+
+    // Route for rejecting a vehicle post
+    Route::post('/admin/reject/{id}', function ($id) {
+        $vehicle = \App\Models\Post::findOrFail($id);
+        $vehicle->status = 'rejected';
+        $vehicle->save();
+
+        return redirect()->route('admin.dashboard')->with('error', 'Vehicle post rejected!');
+    })->name('admin.reject');
 });
 
 // Main Feed Page (Accessible by Everyone)

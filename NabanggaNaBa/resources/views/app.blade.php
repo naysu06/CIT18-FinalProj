@@ -40,7 +40,7 @@
             @foreach($posts as $post)
                 @if ($post->status === 'approved')
                     <div class="bg-gray-100 p-4 rounded-lg shadow-md">
-                        <img src="{{ asset($post->image) }}" alt="Vehicle Image" class="w-full h-64 object-cover rounded-md mb-3">
+                    <img src="{{ asset('storage/' . $post->image) }}" alt="Vehicle Image" class="w-full h-64 object-cover rounded-md mb-3">
                         <p><strong>{{ $post->user->username }}</strong></p>
                         <h2 class="text-xl font-semibold">{{ $post->plate_number }} - {{ $post->model_year }}</h2>
                         <p class="text-gray-600">Location: {{ $post->place }} | Date: {{ $post->date }}</p>
