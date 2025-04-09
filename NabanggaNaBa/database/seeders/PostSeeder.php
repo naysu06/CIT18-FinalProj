@@ -13,7 +13,7 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create 20 car posts and associate them with 20 random users
-        Post::factory()->count(20)->create();
+        // Uncomment to Create 20 car posts and associate them with 20 random users(testing purposes)
+        //Post::factory()->count(20)->create();
     }
 }

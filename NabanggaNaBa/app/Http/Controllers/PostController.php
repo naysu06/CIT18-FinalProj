@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Vehicle;
+use App\Models\VehicleImage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,27 +30,30 @@ class PostController extends Controller
         $request->validate([
             'plate_number' => 'required|unique:vehicles',
             'model_year' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images' => 'required|array', // Ensure images are an array
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate image types and size
         ]);
 
-        // Check if an image file is uploaded
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            // Store the image in 'storage/app/public/images/vehicles'
-            $imagePath = $request->file('image')->store('images/vehicles', 'public');
-        } else {
-            return redirect()->back()->with('error', 'Invalid image upload.');
-        }
-
-        // Create the post with the validated data and store the relative image path
-        Post::create([
+        // Create the vehicle post
+        $vehicle = Vehicle::create([
             'user_id' => Auth::id(),
             'plate_number' => $request->plate_number,
             'model_year' => $request->model_year,
-            'image' => $imagePath, // Store the relative path
             'date' => $request->date,
             'place' => $request->place,
             'status' => 'pending', // Default status should be 'pending'
         ]);
+
+        // Store images and associate them with the vehicle
+        foreach ($request->file('images') as $image) {
+            $imagePath = $image->store('images/vehicles', 'public'); // Store the image
+
+            // Create an entry in the vehicle_images table
+            VehicleImage::create([
+                'vehicle_id' => $vehicle->id, // Associate the image with the vehicle
+                'image' => $imagePath,
+            ]);
+        }
 
         // Redirect back with a success message
         return redirect()->route('posts.index')->with('success', 'Post submitted for review.');

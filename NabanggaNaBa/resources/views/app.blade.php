@@ -37,16 +37,18 @@
         @if($posts->isEmpty())
             <p>No approved posts found.</p>
         @else
-            @foreach($posts as $post)
-                @if ($post->status === 'approved')
-                    <div class="bg-gray-100 p-4 rounded-lg shadow-md">
-                    <img src="{{ asset('storage/' . $post->image) }}" alt="Vehicle Image" class="w-full h-64 object-cover rounded-md mb-3">
-                        <p><strong>{{ $post->user->username }}</strong></p>
-                        <h2 class="text-xl font-semibold">{{ $post->plate_number }} - {{ $post->model_year }}</h2>
-                        <p class="text-gray-600">Location: {{ $post->place }} | Date: {{ $post->date }}</p>
-                    </div>
-                @endif
-            @endforeach
+          @foreach($posts as $post)
+              @if ($post->status === 'approved')
+                  <div class="bg-gray-100 p-4 rounded-lg shadow-md">
+                      @foreach($post->vehicleImages as $vehicleImage)
+                          <img src="{{ asset('storage/' . $vehicleImage->image) }}" alt="Vehicle Image" class="w-full h-64 object-cover rounded-md mb-3">
+                      @endforeach
+                      <p><strong>{{ $post->user->username }}</strong></p>
+                      <h2 class="text-xl font-semibold">{{ $post->plate_number }} - {{ $post->model_year }}</h2>
+                      <p class="text-gray-600">Location: {{ $post->place }} | Date: {{ $post->date }}</p>
+                  </div>
+              @endif
+          @endforeach
         @endif
       </div>
     </section>
@@ -69,8 +71,9 @@
             <input type="text" name="model_year" class="w-full border p-2 rounded" required>
           </div>
           <div class="mb-3">
-            <label class="block text-sm font-semibold">Image</label>
-            <input type="file" name="image" class="w-full border p-2 rounded" required>
+            <label class="block text-sm font-semibold">Images</label>
+            <input type="file" name="images[]" class="w-full border p-2 rounded" multiple required>
+            <small class="text-xs text-gray-500">You can select multiple images</small>
           </div>
           <div class="mb-3">
             <label class="block text-sm font-semibold">Date</label>
