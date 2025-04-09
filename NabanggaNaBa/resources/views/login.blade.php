@@ -31,22 +31,30 @@
 
       <!-- Login Form -->
       <form action="{{ route('auth.login') }}" method="POST" class="space-y-4">
-          @csrf
-          <div>
-          <label class="block text-gray-700">Username</label>
-          <input type="text" name="username" class="w-full border rounded p-2" required />
-          </div>
+        @csrf
 
-          <div>
-          <label class="block text-gray-700">Password</label>
-          <input type="password" name="password" class="w-full border rounded p-2" required />
-          </div>
+        <div>
+            <label class="block text-gray-700">Username</label>
+            <input type="text" name="username" class="w-full border rounded p-2" required />
+        </div>
 
-          <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg cursor-pointer">
-          Login
-          </button>
-      </form>
+        <div>
+            <label class="block text-gray-700">Password</label>
+            <input type="password" name="password" class="w-full border rounded p-2" required />
+        </div>
 
+        <div>
+            <label class="block text-gray-700">Login As</label>
+            <select name="role" class="w-full border rounded p-2" required>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+
+        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg cursor-pointer">
+            Login
+        </button>
+    </form>
 
       <p class="text-center mt-4 text-gray-600">
         Don't have an account? 

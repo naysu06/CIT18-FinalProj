@@ -17,4 +17,9 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function vehicleImages()
+    {
+        return $this->hasMany(VehicleImage::class, 'vehicle_id');
+    }
 }

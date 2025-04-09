@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('plate_number')->unique();
             $table->string('model_year');
-            $table->string('image');
             $table->date('date')->nullable();
             $table->string('place')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending'); // Post Status

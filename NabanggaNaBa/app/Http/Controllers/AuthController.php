@@ -43,15 +43,32 @@ class AuthController extends Controller
         $request->validate([
             'username' => 'required|string',
             'password' => 'required|string',
+            'role' => 'required|in:admin,user', // validate role input
         ]);
-
-        // Attempt login using username instead of email
-        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
-            return redirect()->route('dashboard')->with('success', 'Login successful!');
+    
+        $credentials = $request->only('username', 'password');
+    
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+    
+            if ($user->role !== $request->role) {
+                Auth::logout();
+                return back()->withErrors([
+                    'role' => 'Invalid role selected for this account.',
+                ]);
+            }
+    
+            // Redirect based on role
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.dashboard')->with('success', 'Welcome, Admin!');
+            } else {
+                return redirect()->route('dashboard')->with('success', 'Login successful!');
+            }
+            
         }
-
+    
         return back()->withErrors(['username' => 'Invalid username or password.']);
-    }
+    }    
 
     // Handle logout
     public function destroy()
