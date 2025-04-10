@@ -26,6 +26,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    // Method to check if the user is an admin
+    
+    public function isAdmin()
+    {
+        return $this->role === 'admin'; // Check if the user's role is 'admin'
+    }
+    
     // Use username instead of email for login
     public function username()
     {

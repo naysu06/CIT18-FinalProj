@@ -15,10 +15,10 @@ class PostFactory extends Factory
         return [
             'plate_number' => strtoupper($this->faker->unique()->bothify('??-####')), // Random plate number
             'model_year' => $this->faker->year(), // Random year
-            'image' => 'posts/sample.jpg', // Placeholder image
+            'image' => 'images/vehicles/placeholder.jpg', // Placeholder image
             'date' => $this->faker->date(),
             'place' => $this->faker->city(),
-            'status' => 'approved', // Directly approved for testing
+            'status' => 'pending', // Directly approved for testing, change to pending for real use
             'user_id' => User::factory(), // Generates a random user
         ];
     }
