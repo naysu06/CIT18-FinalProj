@@ -1,20 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<<<<<<< HEAD
-    <meta charset="UTF-8">
-    <title>Admin Dashboard - NabanggaNaBa</title>
-    @vite('resources/css/app.css')
-</head>
-<body class="bg-gray-100">
-    <nav class="bg-white shadow-md p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-gray-800">Admin Dashboard</h1>
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Logout</button>
-=======
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard | NabanggaNaBa</title>
@@ -33,19 +19,10 @@
                 <button class="bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md transition duration-200">
                     <i class="ph ph-sign-out mr-2"></i> Logout
                 </button>
->>>>>>> dev4
             </form>
         </div>
     </nav>
 
-<<<<<<< HEAD
-    <main class="container mx-auto p-8">
-        <h2 class="text-xl font-semibold mb-4">Welcome, Admin</h2>
-
-        <!-- Flash Messages Section -->
-        @if(session('success'))
-            <div class="bg-green-500 text-white p-4 rounded mb-6">
-=======
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-10">
         <!-- Welcome Message -->
@@ -57,62 +34,17 @@
         <!-- Flash Messages -->
         @if(session('success'))
             <div class="bg-green-100 text-green-800 border border-green-300 px-4 py-3 rounded-lg mb-6 shadow">
->>>>>>> dev4
                 {{ session('success') }}
             </div>
         @endif
 
         @if(session('error'))
-<<<<<<< HEAD
-            <div class="bg-red-500 text-white p-4 rounded mb-6">
-=======
             <div class="bg-red-100 text-red-800 border border-red-300 px-4 py-3 rounded-lg mb-6 shadow">
->>>>>>> dev4
                 {{ session('error') }}
             </div>
         @endif
 
         <!-- Pending Vehicles Section -->
-<<<<<<< HEAD
-        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-            <h3 class="text-lg font-semibold mb-4">Pending Vehicle Posts</h3>
-            <table class="min-w-full table-auto border-collapse">
-                <thead>
-                    <tr>
-                        <th class="border-b-2 px-4 py-2 text-left">Plate Number</th>
-                        <th class="border-b-2 px-4 py-2 text-left">Model Year</th>
-                        <th class="border-b-2 px-4 py-2 text-left">Status</th>
-                        <th class="border-b-2 px-4 py-2 text-left">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($pendingVehicles as $vehicle)
-                        <tr>
-                            <td class="border-b px-4 py-2">{{ $vehicle->plate_number }}</td>
-                            <td class="border-b px-4 py-2">{{ $vehicle->model_year }}</td>
-                            <td class="border-b px-4 py-2">{{ ucfirst($vehicle->status) }}</td>
-                            <td class="border-b px-4 py-2">
-                                <!-- Approve Button -->
-                                <form action="{{ route('admin.approve', $vehicle->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Approve</button>
-                                </form>
-
-                                <!-- Reject Button -->
-                                <form action="{{ route('admin.reject', $vehicle->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Reject</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </main>
-</body>
-</html>
-=======
         <section class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200">
             <div class="flex justify-between items-center mb-6">
                 <h3 class="text-2xl font-semibold text-gray-800 flex items-center gap-2">
@@ -172,4 +104,3 @@
 
 </body>
 </html>
->>>>>>> dev4
