@@ -43,7 +43,7 @@
       <form action="{{ route('logout') }}" method="POST">
         @csrf
         @method('DELETE')
-        <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Logout</button>
+        <button class="bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md transition duration-200 cursor-pointer">Logout</button>
       </form>
       @else
         <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-600 cursor-pointer">Login</a>
